@@ -1,5 +1,5 @@
 import unittest
-from dedupe.distance.cosine import CosineSetSimilarity, CosineTextSimilarity
+from simplecosine.cosine import CosineSetSimilarity, CosineTextSimilarity
 import numpy
 import pickle
 
