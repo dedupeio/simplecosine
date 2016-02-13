@@ -1,5 +1,4 @@
 import math
-import numpy
 
 class CosineSimilarity(object) :
 
@@ -7,12 +6,13 @@ class CosineSimilarity(object) :
         self.doc_freq = {}
         num_docs = 0.0
         for document in corpus :
-            for word in set(self._list(document)) :
-                if word in self.doc_freq :
-                    self.doc_freq[word] += 1
-                else :
-                    self.doc_freq[word] = 1
-            num_docs += 1
+            if document :
+                for word in set(self._list(document)) :
+                    if word in self.doc_freq :
+                        self.doc_freq[word] += 1
+                    else :
+                        self.doc_freq[word] = 1
+                num_docs += 1
                 
         for word, count in self.doc_freq.items() :
             self.doc_freq[word] = math.log(num_docs/count)
@@ -54,7 +54,7 @@ class CosineSimilarity(object) :
             return numerator/(norm_1 * norm_2)
 
         else :
-            return numpy.nan
+            return float('nan')
 
     def __getstate__(self):
         result = self.__dict__.copy()

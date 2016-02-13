@@ -9,7 +9,7 @@ except ImportError :
 setup(
     name='simplecosine',
     url='https://github.com/datamade/simplecosine',
-    version='1.0',
+    version='1.1',
     description='Simple cosine distance',
     packages=['simplecosine'],
     install_requires=['numpy'],
