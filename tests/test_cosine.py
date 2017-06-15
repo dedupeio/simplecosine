@@ -6,7 +6,7 @@ import pickle
 class TestSetCosineClass(unittest.TestCase):
     def setUp(self):
         self.ilist = [('a', 'b', 'c'),
-                      ('b', 'c', 'd k'),
+                      ['b', 'c', 'd k'],
                       ('d k', 'e', 'f')
                       ]
 

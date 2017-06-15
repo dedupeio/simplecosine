@@ -25,8 +25,9 @@ class CosineSimilarity(object) :
         self.vectors = {}
 
     def vectorize(self, field) :
-        if field in self.vectors :
-            return self.vectors[field]
+        result = self.vectors.get(self._hashable(field), None)
+        if result is not None:
+            return result
 
         vector = {}
         for word in self._list(field) :
@@ -37,7 +38,7 @@ class CosineSimilarity(object) :
 
         norm = math.sqrt(sum(weight * weight for weight in vector.values()))
 
-        self.vectors[field] = (vector, norm)
+        self.vectors[self._hashable(field)] = (vector, norm)
 
         return vector, norm
 
@@ -66,10 +67,17 @@ class CosineTextSimilarity(CosineSimilarity) :
     def _list(self, document) :
         return document.split()
 
+    def _hashable(self, document):
+        return document
+
 class CosineSetSimilarity(CosineSimilarity) :
 
     def _list(self, document) :
         return document
+
+    def _hashable(self, document):
+        return tuple(document)
+
 
 
 

@@ -1,0 +1,28 @@
+branches:
+  only:
+  - master
+  - "/^v.*$/"
+language: python
+python:
+  - 3.6
+  - 2.7
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+  irc: chat.freenode.net#dedupe
+install:
+  - pip install --upgrade pip
+  - pip install --upgrade pytest
+  - pip install -e .
+script:
+  - pytest
+deploy:
+  provider: pypi
+  user: datamade.wheelbuilder
+  on:
+    tags: true
+  distributions: "sdist bdist_wheel"
+  password:
+    secure: INXBcWkZ3zspFYGBgf1G4OZ2eLbfL9coUhuxW+nhhLYF9PVlC2Y8lMzlenfC1lDasfj93O7EnZFJLnTKhhS7ZrvaDT673BCLwZHL1qRU7uzMx/WsZT/VMZk8AZND/7rR8uHaCbVElhUfXa00f6qAe7YHmcNzH93QNu78TxK0K4M=
+sudo: false
